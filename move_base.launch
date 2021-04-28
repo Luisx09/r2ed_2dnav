@@ -6,10 +6,9 @@
 	<arg name="initial_pose_y" default="0.0" />
 	<arg name="initial_pose_a" default="0.0" />
 	<master auto="start"/>
+	
  <!-- Run the map server --> 
-<!--     <node name="map_server" pkg="map_server" type="map_server" args="$(find r2ed_2dnav)/map.pgm 18944x32576"/> -->
-	<!-- <node name="map_server" pkg="map_server" type="map_server" args="$(find r2ed_2dnav)/map3.pgm 4000x4000"/> -->
-	<node pkg="map_server" type="map_server" args="$(find r2ed_2dnav)/map_ridge.yaml" respawn="true" name="map_ridge" />
+	<node pkg="map_server" type="map_server" args="$(find r2ed_2dnav)/maps/map_ridge.yaml" respawn="true" name="map_ridge" />
 
  <!--- Run AMCL --> 
     <!-- <include file="$(find amcl)/examples/amcl_diff.launch" /> -->
@@ -69,12 +68,12 @@
 
    
 	<node pkg="move_base" type="move_base" respawn="false" name="move_base" output="screen">
-		<rosparam file="$(find r2ed_2dnav)/costmap_common_params.yaml" command="load" ns="global_costmap" /> 
-		<rosparam file="$(find r2ed_2dnav)/costmap_common_params.yaml" command="load" ns="local_costmap" />
-		<rosparam file="$(find r2ed_2dnav)/local_costmap_params.yaml" command="load" />
-		<rosparam file="$(find r2ed_2dnav)/global_costmap_params.yaml" command="load" /> 
-		<rosparam file="$(find r2ed_2dnav)/base_local_planner_params.yaml" command="load" />
-	<remap from="odom" to="odometry/filtered" />
+		<rosparam file="$(find r2ed_2dnav)/params/costmap_common_params.yaml" command="load" ns="global_costmap" /> 
+		<rosparam file="$(find r2ed_2dnav)/params/costmap_common_params.yaml" command="load" ns="local_costmap" />
+		<rosparam file="$(find r2ed_2dnav)/params/local_costmap_params.yaml" command="load" />
+		<rosparam file="$(find r2ed_2dnav)/params/global_costmap_params.yaml" command="load" /> 
+		<rosparam file="$(find r2ed_2dnav)/params/base_local_planner_params.yaml" command="load" />
+		<remap from="odom" to="odometry/filtered" />
 	</node>
 
 </launch>
