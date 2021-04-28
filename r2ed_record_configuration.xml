@@ -1,0 +1,11 @@
+<launch>
+
+ <!-- <include file="$(find grasping_sim)/launch/full_humanoid_gazebo.launch" /> -->
+ <include file="$(find grasping_sim)/launch/ridgeback_only.launch" />
+ 
+ <node pkg="rf2o_laser_odometry" type="rf2o_laser_odometry" name="laser_odom"
+ 
+ <node pkg="tf" type="static_transform_publisher" name="odom_to_map"
+    args="0 0  0  0 0 0  /map /odom 100" />
+
+</launch> 
